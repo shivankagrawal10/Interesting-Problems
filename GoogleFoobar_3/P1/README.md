@@ -23,7 +23,7 @@ Given 5 blocks, 2 staircase are possible
 - Language: Python 2.7.16
 - Input range: 3<= n <= 200
 - Required fast runtime: had hidden runtime threshold
-## Approach and Learning ##
+## Approach ##
 ### BruteForce.py ###
 - Initial approach to get solution without regard for runtime. Recursively iterate through all possibilities of blocks per stair level (given the next level blocks > current level blocks) and count which possibilities end with n blocks.
 - Realized that problem can be slightly simplified here by only checking n/2 (or n/2-1 if even) blocks for the first level, since anything more than halfway-1 would break the rule of every subsequent level > than previous
@@ -60,5 +60,10 @@ See [Subtree Aggregation Runtime Graph](2_SubtreeAgg_Runtime.png) for perfomance
 ### Subtree Aggregation Optimization ###
 - Insight: Realized a lot of subtree calculations repeat over large range of n blocks
 - Optimization: Applied Memoization to save performance time from repeated calculations 
-- Result: Amazing Runtime Performance, Scale is uncomparable to runtime before memoization. n=200 takes between 0.002 to 0.004 seconds </br>
+- Result: Amazing Runtime Performance, Scale is uncomparable to runtime before memoization. n=200 takes between 0.0015 to 0.002 seconds </br>
 See [Subtree Aggregation Optimized Runtime Graph](3_SubtreeAggOptimized_Runtime.png) for performance graph
+## Learning ##
+From this problem, I value 3 lessons I previuosly knew but now have deeper appreciation for. Brainstorming, Breaking the problem down into simpler/familiar mathematical abstractions, Thinking about ways to save rutime performance.
+- Process of brainstorming/writing pseudo code before coding gives me a clear roadmap of what I need to implement. Helps clearly separate problem solving from implementation and allows for looking at the problem in unique ways
+- Breaking the problem to its bare bone and viewing it from familiar math/data structure constructs elucidates very beautiful solutions and provides a framework for approaching the problem
+- Final step of thinking about saving on runtime algorithmically allows for massive advantage when scaling up and dealing with large complex calculations. It makes your solution more applicable for powerful computations.
