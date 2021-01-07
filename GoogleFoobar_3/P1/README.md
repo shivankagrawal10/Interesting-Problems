@@ -27,7 +27,7 @@ Given 5 blocks, 2 staircase are possible
 ### BruteForce.py ###
 - Initial approach to get solution without regard for runtime. Recursively iterate through all possibilities of blocks per stair level (given the next level blocks > current level blocks) and count which possibilities end with n blocks.
 - Realized that problem can be slightly simplified here by only checking n/2 (or n/2-1 if even) blocks for the first level, since anything more than halfway-1 would break the rule of every subsequent level > than previous
-- Performance: Got correct answers, but when analyzing runtime computer reached ~ 10 seconds to find possibilities for n=100 blocks.</br>
+- Performance: Got correct answers, but bad runtime ~ 10 seconds to find n=100 blocks and growing exponentially.</br>
 See [Brute Force Runtime Graph](1_BruteForce_Runtime.png) for performance gaph 
 ### Subtree Aggregation ###
 - I went back to the drawing board and worked on small sample cases to find patterns in the way staircase number increased.
@@ -55,12 +55,13 @@ Example:
   Next Step:
   Would repeat process on each produced pair to find total child nodes under it
 </pre>
-- Runtime: Takes less than 1 second to calculate possibilites for n=100 blocks. But still not good enough to quickly calculate 200, n=130 starts to take 4 seconds and is growing exponentially</br>
+- Runtime: Major runtime improvement n=100 blocks now takes ~0.5 seconds compared to brute force 10 seconds. But still not good enough to quickly calculate 200, n=130 starts to take 4 seconds and is growing exponentially</br>
 See [Subtree Aggregation Runtime Graph](2_SubtreeAgg_Runtime.png) for perfomance graph
 ### Subtree Aggregation Optimization ###
 - Insight: Realized a lot of subtree calculations repeat over large range of n blocks
 - Optimization: Applied Memoization to save performance time from repeated calculations 
-- Result: Amazing Runtime Performance, Scale is uncomparable to runtime before memoization. n=200 takes between 0.0015 to 0.002 seconds </br>
+- Result: Amazing Runtime Performance, n=100 takes ~0.00063 seconds compared to ~0.5 seconds without memoization
+- n=200 takes between 0.0015 to 0.002 seconds, n=200 was taking minutes to calculate before </br>
 See [Subtree Aggregation Optimized Runtime Graph](3_SubtreeAggOptimized_Runtime.png) for performance graph
 ## Learning ##
 From this problem, I value 3 lessons I previuosly knew but now have deeper appreciation for. Brainstorming, Breaking the problem down into simpler/familiar mathematical abstractions, Thinking about ways to save rutime performance.
