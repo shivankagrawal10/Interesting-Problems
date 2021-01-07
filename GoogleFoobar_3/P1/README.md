@@ -7,9 +7,9 @@ Where stair case is defined as:
 - Every level must be greater than the previous (ex. if current level of stairs is 3 then next must be >= 4)
 
 Example:
-Given 3 blocks, 1 staircase is possible
+Given 3 blocks, 1 staircase is possible\
 %\
-% %\
+% %
 
 Given 5 blocks, 2 staircase are possible
 %       
