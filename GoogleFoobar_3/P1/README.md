@@ -27,7 +27,7 @@ Given 5 blocks, 2 staircase are possible
 ### BruteForce.py ###
 - Initial approach to get solution without regard for runtime. Recursively iterate through all possibilities of blocks per stair level (given the next level blocks > current level blocks) and count which possibilities end with n blocks.
 - Realized that problem can be slightly simplified here by only checking n/2 (or n/2-1 if even) blocks for the first level, since anything more than halfway-1 would break the rule of every subsequent level > than previous
-- Performance: Got correct answers, but when analyzing runtime computer reached ~ 10 seconds to find possibilities for n=100 blocks./ 
+- Performance: Got correct answers, but when analyzing runtime computer reached ~ 10 seconds to find possibilities for n=100 blocks.</br>
 See [Brute Force Runtime](1_BruteForce_Runtime.png) for performance gaph 
 ### Subtree Aggregation ###
 - I went back to the drawing board and worked on small sample cases to find patterns in the way staircase number increased.
@@ -55,6 +55,6 @@ Example:
   Next Step:
   Would repeat process on each produced pair to find total child nodes under it
 </pre>
-- Runtime: Takes less than 1 second to calculate possibilites for n=100 blocks. But still not good enough to quickly calculate 200, n=130 starts to take 4 seconds and is growing exponentially/
+- Runtime: Takes less than 1 second to calculate possibilites for n=100 blocks. But still not good enough to quickly calculate 200, n=130 starts to take 4 seconds and is growing exponentially</br>
 See [Subtree Aggregation Runtime Graph](2_SubtreeAgg_Runtime.png) for perfomance graph
 ### Subtree Aggregation Optimization ###
