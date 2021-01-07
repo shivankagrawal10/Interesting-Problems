@@ -27,7 +27,8 @@ Given 5 blocks, 2 staircase are possible
 ### BruteForce.py ###
 - Initial approach to get solution without regard for runtime. Recursively iterate through all possibilities of blocks per stair level (given the next level blocks > current level blocks) and count which possibilities end with n blocks.
 - Realized that problem can be slightly simplified here by only checking n/2 (or n/2-1 if even) blocks for the first level, since anything more than halfway-1 would break the rule of every subsequent level > than previous
-- Got correct answers, but when analyzing runtime computer reached ~ 8 seconds to find possibilities for n=100 blocks. See BruteForce_Runtime.png for runtime gaph 
+- Got correct answers, but when analyzing runtime computer reached ~ 8 seconds to find possibilities for n=100 blocks. 
+See [Brute Force Runtime](1_BruteForce_Runtime.png) for runtime gaph 
 ### Subtree Aggregation ###
 - I went back to the drawing board and worked on small sample cases to find patterns in the way staircase number increased.
 - Started to see a tree structure for all possible staircases, needed a way to quickly calculate number of nodes in the tree. This meant I needed to look at the problem more mathematically
