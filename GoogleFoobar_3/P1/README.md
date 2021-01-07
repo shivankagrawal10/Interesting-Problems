@@ -8,8 +8,8 @@ Where stair case is defined as:
 
 Example:
 Given 3 blocks, 1 staircase is possible
-%
-% %
+%\
+% %\
 
 Given 5 blocks, 2 staircase are possible
 %       
