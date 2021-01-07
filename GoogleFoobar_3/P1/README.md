@@ -34,5 +34,5 @@ See [Brute Force Runtime](1_BruteForce_Runtime.png) for performance gaph
 - Started to see a tree structure for all possible staircases, needed a way to quickly calculate number of nodes in the tree. This meant I needed to look at the problem more mathematically
 - Numberline perspective change
 - Runtime: Takes less than 1 second to calculate possibilites for n=100 blocks. But still not good enough to quickly calculate 200
-See [Subtree Aggregation Runtime Graph]() for perfomance graph
+See [Subtree Aggregation Runtime Graph](2_SubtreeAgg_Runtime.png) for perfomance graph
 ### Subtree Aggregation Optimization ###
