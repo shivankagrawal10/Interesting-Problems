@@ -27,12 +27,26 @@ Given 5 blocks, 2 staircase are possible
 ### BruteForce.py ###
 - Initial approach to get solution without regard for runtime. Recursively iterate through all possibilities of blocks per stair level (given the next level blocks > current level blocks) and count which possibilities end with n blocks.
 - Realized that problem can be slightly simplified here by only checking n/2 (or n/2-1 if even) blocks for the first level, since anything more than halfway-1 would break the rule of every subsequent level > than previous
-- Performance: Got correct answers, but when analyzing runtime computer reached ~ 8 seconds to find possibilities for n=100 blocks./ 
+- Performance: Got correct answers, but when analyzing runtime computer reached ~ 10 seconds to find possibilities for n=100 blocks./ 
 See [Brute Force Runtime](1_BruteForce_Runtime.png) for performance gaph 
 ### Subtree Aggregation ###
 - I went back to the drawing board and worked on small sample cases to find patterns in the way staircase number increased.
 - Started to see a tree structure for all possible staircases, needed a way to quickly calculate number of nodes in the tree. This meant I needed to look at the problem more mathematically
-- Numberline perspective change
-- Runtime: Takes less than 1 second to calculate possibilites for n=100 blocks. But still not good enough to quickly calculate 200
+- <b> Perspective Shift: </b> 
+<pre>
+Stopped looking at the problem like blocks and stairs. Started visualizing the problem as finding number of pairs adding up to m (remaining number of blocks) such that the values in the pairs are greater than the number of stairs in the previous level
+- Formula: 
+Number of stair case possibilities when m blocks remain and previous stair level was x:
+- if m is odd: floor(m/2) - x 
+- if m is even: m/2 - 1 - x
+Example:
+  n=10
+  subcase: x=1 block, m=9 blocks (How many possibilities can be generated when 1 block is in the first level and 9 blocks remain)
+  floor(m/2) - x = floor(9/2) - 1 = 4 - 1 = 3
+  verification:
+    9 -> (2,7), (3,6), (4,5) {anything beyond would break the stair construction rule}
+  Would repeat process on each produced pair to find total child nodes under it
+</pre>
+- Runtime: Takes less than 1 second to calculate possibilites for n=100 blocks. But still not good enough to quickly calculate 200, n=130 starts to take 4 seconds and is growing exponentially/
 See [Subtree Aggregation Runtime Graph](2_SubtreeAgg_Runtime.png) for perfomance graph
 ### Subtree Aggregation Optimization ###
