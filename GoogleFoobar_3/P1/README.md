@@ -24,6 +24,6 @@ Given 5 blocks, 2 staircase are possible
 - Input range: 3<= n <= 200
 ## Approach and Learning ##
 ### BruteForce.py ###
--Initial approach to get solution without regard for runtime. Recursively iterate through all possibilities of stair level and count which possibilities end with n stair cases.
--Realized that problem can be slightly simplified here by only checking n/2 (or n/2-1 if even) blocks for the first level, since the next level had to be >
--Got correct answers, but when analyzing runtime computer reached ~ 8 seconds to find possibilities for n=100 blocks. See BruteForce_Runtime.png for runtime gaph 
+- Initial approach to get solution without regard for runtime. Recursively iterate through all possibilities of stair level and count which possibilities end with n stair cases.
+- Realized that problem can be slightly simplified here by only checking n/2 (or n/2-1 if even) blocks for the first level, since the next level had to be >
+- Got correct answers, but when analyzing runtime computer reached ~ 8 seconds to find possibilities for n=100 blocks. See BruteForce_Runtime.png for runtime gaph 
