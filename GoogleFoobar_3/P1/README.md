@@ -20,8 +20,9 @@ Given 5 blocks, 2 staircase are possible
 % %     % %
 </pre>
 ## Constraints ##
-- Required fast runtime: had hidden runtime threshold
+- Language: Python 2.7.16
 - Input range: 3<= n <= 200
+- Required fast runtime: had hidden runtime threshold
 ## Approach and Learning ##
 ### BruteForce.py ###
 - Initial approach to get solution without regard for runtime. Recursively iterate through all possibilities of blocks per stair level (given the next level blocks > current level blocks) and count which possibilities end with n blocks.
