@@ -11,11 +11,11 @@ Given 3 blocks, 1 staircase is possible\
 %\
 % %
 
-Given 5 blocks, 2 staircase are possible\
+Given 5 blocks, 2 staircase are possible
 <pre>
-%/       
-%       %/
-%       % %/
+%       
+%       %
+%       % %
 % %     % %
-<pre\>
+</pre>
 ## Approach and Learning ##
