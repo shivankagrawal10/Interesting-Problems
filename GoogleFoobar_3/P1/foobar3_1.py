@@ -69,146 +69,131 @@ Output:
     1
 """
 
-'''
-#brute force, build up stair case and count ones that work
-total=0
-def solution(n):
-    global total
-    total=n
-    return count(0,0)
-def count(currlev,currtot):
-    if(currtot==total and currlev!=currtot):
-        return 1
-    elif(currtot>total):
-        return 0
-    x=0
-    tempdiff=total-currtot
-    for stair in range(currlev+1,tempdiff+1):
-        x+=count(stair,currtot+stair)
-    return x
-'''
-
-"""
-# Slight optimization - does not explore unnecessary options
-total=0
-lim=0
-def solution(n):
-    global total, lim
-    total=n
-    
-    return count(0,0)
-def count(currlev,currtot):
-    if(currtot==total and currlev!=currtot):
-        return 1
-    elif(currtot>total):
-        return 0
-    x=0
-    ret=0
-    prevx=x
-    tempdiff=total-currtot
-    lim=int(tempdiff/2)
-    if(lim%2==0):
-        lim-=1
-    
-    for stair in range(currlev+1,tempdiff+1,1):#range(tempdiff,currlev,-1):
-        if(stair>lim):
-            x+=1
-            break
-        #print(stair,currtot+stair)
-        ret=count(stair,currtot+stair)
-        #print(ret)
-        prevx=x
-        x+=ret
-
-    return x
-
-#print(solution(150))
-"""
-"""
-def solution(n):
-    global total, lim
-    total=n
-    
-    return count(0,n)
-def count(currlev,currtot):
-    '''New Approach - find number of pair sums where val greater than currlev and sum =currtot
-    Counts the branches of tree 
-    formula for number of children = currtot/2 - currlev (-1 if currtot is even)
-
-    '''
-    lim=0
-    lim=int(currtot/2)
-    if(currtot%2==0):
-        lim-=1
-    num=lim-currlev
-    #print(num)
-    if(num<=0):
-        return 0
-    tempcount=0
-    for i in range(num+1):
-        stair=currlev+i+1
-        temp=currtot-stair
-        #print(stair,temp)
-        tempcount=count(stair,temp)
-        if(tempcount==0):
-            break
-        num+=tempcount
-    return num
-#print(solution(10))
-"""
-
 
 import timeit
 
-
-
-dictionary={}
+#brute force, build up stair case and count ones that work
 total=0
-def solution(n):
+def BruteForceRunner(n):
     global total
     total=n
-    #dictionary.clear()
-    return count(0,n)
+    return count(0,0)
+def BruteForce(blocks_in_current_level : int,total_blocks_used : int):
+    if(total_blocks_used == total and blocks_in_current_level != total_blocks_used):
+        return 1
+    elif(total_blocks_used > total):
+        return 0
+    x = 0
+    tempdiff = total - total_blocks_used
+    for stair in range(blocks_in_current_level + 1,tempdiff + 1):
+        x += count(stair,total_blocks_used + stair)
+    return x
 
-def count(currlev,currtot):
-    '''New Approach - find number of pair sums where val greater than currlev and sum =currtot
+
+# Slight optimization - does not explore unnecessary options
+total=0
+lim=0
+def BruteForceOpt(n):
+    global total, lim
+    total=n
+    return count(0,0)
+
+def BruteForceOpt(blocks_in_current_level,total_blocks_used):
+    if(total_blocks_used == total and blocks_in_current_level != total_blocks_used):
+        return 1
+    elif(total_blocks_used > total):
+        return 0
+    x = 0
+    ret = 0
+    prevx = x
+    tempdiff = total-total_blocks_used
+    lim = int(tempdiff / 2)
+    if(lim % 2 == 0):
+        lim -= 1
+    
+    for stair in range(blocks_in_current_level + 1,tempdiff + 1,1):#range(tempdiff,blocks_in_current_level,-1):
+        if(stair > lim):
+            x += 1
+            break
+        ret = count(stair,total_blocks_used + stair)
+        prevx = x
+        x += ret
+
+    return x
+
+
+
+def SubtreeAggRunner(n):
+    global total, lim
+    total=n
+    
+    return SubtreeAgg(0,n)
+def SubtreeAgg(blocks_in_current_level : int,total_blocks_used : int):
+    '''New Approach - find number of pair sums where val greater than blocks_in_current_level and sum =total_blocks_used
     Counts the branches of tree 
-    formula for number of children = currtot/2 - currlev (-1 if currtot is even)
+    formula for number of children = total_blocks_used/2 - blocks_in_current_level (-1 if total_blocks_used is even)
 
     '''
-    lim=0
-    lim=int(currtot/2)
-    if(currtot%2==0):
-        lim-=1
-    num=lim-currlev
-    #if((currlev,currtot) in dictionary):
-    #    return num 
-    dictionary[(currlev,currtot)]=num
-    
-    if(num<=0):
-        dictionary[(currlev,currtot)]=0
-        #print(currlev+1,'\nnew stair')
+    lim = 0
+    lim = int(total_blocks_used / 2)
+    if(total_blocks_used % 2 == 0):
+        lim -= 1
+    num = lim-blocks_in_current_level
+    if(num <= 0):
         return 0
-    #else:
-    #    print(num)
-    tempcount=0
+    tempcount = 0
+    for i in range(num + 1):
+        stair = blocks_in_current_level + i + 1
+        temp = total_blocks_used - stair
+        tempcount = count(stair,temp)
+        if(tempcount == 0):
+            break
+        num += tempcount
+    return num
+
+
+
+
+
+subtree_subtree_dictionary={}
+total=0
+def SubtreeAggOptRunner(n):
+    global total
+    total=n
+    #subtree_dictionary.clear()
+    return count(0,n)
+
+def SubtreeAggregationOpt(blocks_in_current_level : int,total_blocks_used : int):
+    '''New Approach - find number of pair sums where val greater than blocks_in_current_level and sum =total_blocks_used
+    Counts the branches of tree 
+    formula for number of children = total_blocks_used/2 - blocks_in_current_level (-1 if total_blocks_used is even)
+
+    '''
+    lim = 0
+    lim = int(total_blocks_used / 2)
+    if(total_blocks_used % 2 == 0):
+        lim -= 1
+    num = lim-blocks_in_current_level
+    subtree_dictionary[(blocks_in_current_level,total_blocks_used)] = num
+    
+    if(num <= 0):
+        subtree_dictionary[(blocks_in_current_level,total_blocks_used)] = 0
+        return 0
+    tempcount = 0
     for i in range(num+1):
-        stair=currlev+i+1
-        temp=currtot-stair
-        #print(stair)
-        #print(stair,temp)
+        stair = blocks_in_current_level+i+1
+        temp = total_blocks_used-stair
         
         try:
-            tempcount=dictionary[(stair,temp)]
+            tempcount = subtree_dictionary[(stair,temp)]
         except:
-            tempcount=count(stair,temp)
+            tempcount = count(stair,temp)
         
-        if(tempcount==0):
+        if(tempcount == 0):
             break
-        num+=tempcount
-    dictionary[(currlev,currtot)]=num #important to update dict in end so that aggregates all branches under not just immediate children
-    #print(dictionary)
-    #print(num)
+        num += tempcount
+    #important to update dict in end so that aggregates all branches under not just immediate children
+    subtree_dictionary[(blocks_in_current_level,total_blocks_used)] = num 
     return num
 
 
